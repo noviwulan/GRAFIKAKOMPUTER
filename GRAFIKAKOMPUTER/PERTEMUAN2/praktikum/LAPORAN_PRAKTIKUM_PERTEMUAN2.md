@@ -37,7 +37,7 @@ KODE PROGRAM :
 
 
 HASIL OUTPUT :
-<p align="center"><img width="400" height="200" alt="image" src="GRAFIKAKOMPUTER/PERTEMUAN2/SSTUGAS/praktikum2_2.PNG" /></p>
+<p align="center"><img width="400" height="200" alt="image" src="../SSTUGAS/praktikum2_2.PNG" /></p>
 
 PENJELASAN :
 
@@ -67,7 +67,7 @@ KODE PROGRAM :
         print(f"Titik ke-{i}")
 
 HASIL OUTPUT :
-<p align="center"><img width="350" height="350" alt="image" src="GRAFIKAKOMPUTER/PERTEMUAN2/SSTUGAS/praktikum2_3.PNG" /></p>
+<p align="center"><img width="350" height="350" alt="image" src="../SSTUGAS/praktikum2_3.PNG" /></p>
 
 PENJELASAN :
 
@@ -104,7 +104,7 @@ KODE PROGRAM :
       print(f"Jarak antara dua titik: {hasil}")
     
 HASIL OUTPUT :
-<p align="center"><img width="300" height="300" alt="image" src="GRAFIKAKOMPUTER/PERTEMUAN2/SSTUGAS/praktikum2_4.PNG" /></p>
+<p align="center"><img width="300" height="300" alt="image" src="../SSTUGAS/praktikum2_4.PNG" /></p>
 
 PENJELASAN :
 
@@ -151,7 +151,7 @@ KODE PROGRAM :
       print(f"Titik ({titik_dict['x']},{titik_dict['y']}) berwarna {titik_dict['warna']}.")
   
 HASIL OUTPUT :
-<p align="center"><img width="500" height="500" alt="image" src="GRAFIKAKOMPUTER/PERTEMUAN2/SSTUGAS/praktikum2_5.PNG" /></p>
+<p align="center"><img width="500" height="500" alt="image" src="../SSTUGAS/praktikum2_5.PNG" /></p>
 
 PENJELASAN :
 
