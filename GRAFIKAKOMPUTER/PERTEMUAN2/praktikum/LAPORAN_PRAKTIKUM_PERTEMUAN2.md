@@ -13,7 +13,7 @@ KODE PROGRAM :
 
 
 HASIL OUTPUT :
-<p align="center"><img width="330" height="180" alt="image" src="GRAFIKAKOMPUTER/PERTEMUAN2/SSTUGAS/praktikum2_1.PNG" /></p>
+<p align="center"><img width="330" height="180" alt="image" src="../SSTUGAS/praktikum2_1.PNG" /></p>
 
 PENJELASAN :
 
