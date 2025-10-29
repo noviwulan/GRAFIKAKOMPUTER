@@ -13,7 +13,7 @@ KODE PROGRAM :
 
 
 HASIL OUTPUT :
-<p align="center"><img width="300" height="200" alt="image" src="GRAFIKAKOMPUTER/PERTEMUAN3/SSTUGAS/praktikumkoordinat_1.PNG" /></p>
+<p align="center"><img width="300" height="200" alt="image" src="../SSTUGAS/praktikumkoordinat_1.PNG" /></p>
 
 PENJELASAN :
 
@@ -75,7 +75,7 @@ KODE PROGRAM :
 
 
 HASIL OUTPUT :
-<p align="center"><img width="400" height="200" alt="image" src="GRAFIKAKOMPUTER/PERTEMUAN3/SSTUGAS/praktikumkoordinat_2.PNG" /></p>
+<p align="center"><img width="400" height="200" alt="image" src="../SSTUGAS/praktikumkoordinat_2.PNG" /></p>
 
 PENJELASAN :
 
@@ -122,7 +122,7 @@ KODE PROGRAM :
         print()
 
 HASIL OUTPUT :
-<p align="center"><img width="350" height="350" alt="image" src="GRAFIKAKOMPUTER/PERTEMUAN3/SSTUGAS/praktikumkoordinat_3.PNG" /></p>
+<p align="center"><img width="350" height="350" alt="image" src="../SSTUGAS/praktikumkoordinat_3.PNG" /></p>
 
 PENJELASAN :
 
@@ -166,7 +166,7 @@ KODE PROGRAM :
         print()
     
 HASIL OUTPUT :
-<p align="center"><img width="300" height="300" alt="image" src="GRAFIKAKOMPUTER/PERTEMUAN3/SSTUGAS/praktikumrepresentasi_1.PNG" /></p>
+<p align="center"><img width="300" height="300" alt="image" src="../SSTUGAS/praktikumrepresentasi_1.PNG" /></p>
 
 PENJELASAN :
 
@@ -210,7 +210,7 @@ KODE PROGRAM :
         print(f"({round(x, 2)}, {round(y, 2)})")
 
 HASIL OUTPUT :
-    <p align="center"><img width="500" height="500" alt="image" src="GRAFIKAKOMPUTER/PERTEMUAN3/SSTUGAS/praktikumrepresentasi_2.PNG" /></p>
+    <p align="center"><img width="500" height="500" alt="image" src="../SSTUGAS/praktikumrepresentasi_2.PNG" /></p>
     
 PENJELASAN :
 
