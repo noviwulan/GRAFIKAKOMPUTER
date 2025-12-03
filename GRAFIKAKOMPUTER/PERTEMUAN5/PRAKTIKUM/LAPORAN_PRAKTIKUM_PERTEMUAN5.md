@@ -1,263 +1,173 @@
 <h1 align="center">
-LAPORAN PRAKTIKUM PADA PERTEMUAN 3
+LAPORAN PRAKTIKUM PADA PERTEMUAN 5
 </h1>
 
-## 1. PRAKTIKUM KOORDINAT SIMULASI KOORDINAT LAYAR
+## 1. PRAKTIKUM GAMBAR ALGORITMA GARIS DDA
 
 KODE PROGRAM :
 
-    for y in range(0, 5):
-      for x in range(0, 10):
-        print(".", end="")
-    print()
-
-
-HASIL OUTPUT :
-<p align="center"><img width="300" height="200" alt="image" src="GRAFIKAKOMPUTER/PERTEMUAN3/SSTUGAS/praktikumkoordinat_1.PNG" /></p>
-
-PENJELASAN :
-
-Pada file <b><i>"simulasikoordinatlayar.py"</i></b> menampilkan grid (kotak) berukuran 5 baris × 10 kolom menggunakan karakter ".".
-🔹 for y in range(0, 5):
-→ Mengatur jumlah baris sebanyak 5.
-Setiap iterasi y mewakili satu baris pada layar.
-
-🔹 for x in range(0, 10):
-→ Mengatur jumlah kolom sebanyak 10.
-Setiap iterasi x mewakili satu kolom dalam satu baris.
-
-🔹 print(".", end="")
-→ Menampilkan simbol "." tanpa pindah ke baris baru (end="" mencegah baris berganti).
-Hasilnya, sepuluh titik muncul secara horizontal dalam satu baris.
-
-🔹print()
-→ Digunakan untuk pindah ke baris berikutnya setelah satu baris selesai dicetak.
+    
+## MENGHITUNG dx dan dy DARI NILAI SELISIH
+    dx = x2 - x1
+    dy = y2 - y1
+## MENGHITUNG JUMLAH LANGKAH/STEP DARI NILAI MAX ANTARA dx dan dy 
+    steps = int(max(abs(dx), abs(dy)))
+## MENGHITUNG NILAI INCREMENT PERLANGKAH UNTUK x DAN y
+    x_inc = dx / steps
+    y_inc = dy / steps
+## MENENTUKAN POSISI AWAL
+    x = x1
+    y = y1
+## LOOP HASIL INCREMENT x,y SAMPAI KE STEP YANG TELAH DITENTUKAN
+    for _ in range(steps + 1):
+        plot(round(x), round(y))
+        x += x_inc
+        y += y_inc
 
 ----------------------------------------------------------
 
-## 2. PRAKTIKUM KOORDINAT SOAL 1
+## 2. PRAKTIKUM GAMBAR ALGORITMA GARIS BRESENHAM
 
 KODE PROGRAM :
 
-    import math
+    def line_bresenham(x1, y1, x2, y2):
 
-    # Input titik
-    x1 = float(input("Masukkan x1: "))
-    y1 = float(input("Masukkan y1: "))
-    x2 = float(input("Masukkan x2: "))
-    y2 = float(input("Masukkan y2: "))
+## Inisialisasi titik awal
+    x, y = x1, y1
+## Hitung dx dan dy
+    dx = abs(x2 - x1)
+    dy = abs(y2 - y1)
+## Menentukan arah gerak (sx & sy)
+    sx = 1 if x1 < x2 else -1
+    sy = 1 if y1 < y2 else -1
 
-    # Hitung jarak Euclidean
-    jarak = math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
-
-    # Menentukan kuadran titik pertama
-    if x1 > 0 and y1 > 0:
-        kuadran = "Kuadran I"
-    elif x1 < 0 and y1 > 0:
-        kuadran = "Kuadran II"
-    elif x1 < 0 and y1 < 0:
-        kuadran = "Kuadran III"
-    elif x1 > 0 and y1 < 0:
-        kuadran = "Kuadran IV"
-    elif x1 == 0 and y1 == 0:
-        kuadran = "Titik pusat (0,0)"
-    elif x1 == 0:
-        kuadran = "Berada pada sumbu Y"
+    if dx > dy:  				#Garis lebih mendatar 
+        p = 2*dy - dx 			#Hitung nilai p awal
+        for _ in range(dx):		#Perulangan sebanyak dx langkah
+            plot(x, y)			#Gambar titik saat ini
+            x += sx				#Geser x sesuai arah (sx)
+            if p < 0:			#Pengambilan keputusan berdasarkan p
+                p += 2*dy
+            else:
+                y += sy
+                p += 2*(dy - dx)
     else:
-        kuadran = "Berada pada sumbu X"
-
-    # Output
-    print("\n=== HASIL ===")
-    print(f"Titik pertama: ({x1}, {y1})")
-    print(f"Titik kedua  : ({x2}, {y2})")
-    print(f"Jarak antar titik: {round(jarak, 2)}")
-    print(f"Titik pertama berada di: {kuadran}")
-
-
-HASIL OUTPUT :
-<p align="center"><img width="400" height="200" alt="image" src="GRAFIKAKOMPUTER/PERTEMUAN3/SSTUGAS/praktikumkoordinat_2.PNG" /></p>
-
-PENJELASAN :
-
-Pada file <b><i>"soal1.py"</i></b> menghitung jarak antara dua titik koordinat dan 
-menentukan kuadran dari titik pertama berdasarkan sistem koordinat Kartesius (x, y).
-
-🔹 Program meminta pengguna memasukkan dua titik:
-    Titik pertama: (x1, y1)
-    Titik kedua: (x2, y2)
-    Semua nilai diubah menjadi float agar bisa menerima bilangan desimal
-    
-🔹 Perhitungan Jarak:Menggunakan rumus Euclidean
-
-🔹Bagian  memeriksa posisi titik pertama:
-  Kuadran I: x positif, y positif
-  Kuadran II: x negatif, y positif
-  Kuadran III: x negatif, y negatif
-  Kuadran IV: x positif, y negatif
-  Jika salah satu koordinat nol, berarti berada pada sumbu X atau Y.
-    
-
+        p = 2*dx - dy			#Garis lebih curam, p awal
+        for _ in range(dy):		#Perulangan sebanyak dy langkah
+            plot(x, y)			#Gambar titik saat ini
+            y += sy				#Geser y sesuai arah (sy)
+            if p < 0:			#Keputusan berdasarkan p
+                p += 2*dx
+            else:
+                x += sx
+                p += 2*(dx - dy)
 
 ----------------------------------------------------------
 
-## 3.  PRAKTIKUM KOORDINAT SOAL 2
+## 3.  PRAKTIKUM GAMBAR MIDPOINT CIRCLE
 
 KODE PROGRAM :
       
-    # Ukuran layar
-    lebar = 10   # sumbu x (width)
-    tinggi = 5   # sumbu y (height)
+       def circle_midpoint(xc, yc, r):
+    x = 0
+    y = r
+    p = 1 - r
 
-    # Titik yang akan ditampilkan
-    x = 3
-    y = 2
+    def plot_circle(x, y):
+        plot(xc + x, yc + y)
+        plot(xc - x, yc + y)
+        plot(xc + x, yc - y)
+        plot(xc - x, yc - y)
+        plot(xc + y, yc + x)
+        plot(xc - y, yc + x)
+        plot(xc + y, yc - x)
+        plot(xc - y, yc - x)
 
-    # Menampilkan grid
-    for row in range(tinggi):
-        for col in range(lebar):
-            if col == x and row == y:
-                print("X", end=" ")
-            else:
-                print(".", end=" ")
-        print()
+    while x <= y:
+        plot_circle(x, y)
+        x += 1
+        if p < 0:
+            p += 2*x + 1
+        else:
+            y -= 1
+            p += 2*(x - y) + 1
 
-HASIL OUTPUT :
-<p align="center"><img width="350" height="350" alt="image" src="GRAFIKAKOMPUTER/PERTEMUAN3/SSTUGAS/praktikumkoordinat_3.PNG" /></p>
 
+    
 PENJELASAN :
 
-Pada file <b><i>"soal2.py"</i></b> mensimulasikan layar (grid) berukuran 10 kolom × 5 baris, 
-di mana setiap piksel digambarkan menggunakan simbol ".".
-Satu titik tertentu pada posisi (x = 3, y = 2) akan diganti menjadi simbol "X" untuk menandai posisi koordinat tersebut.
+1. Inisialisasi variabel
+(xc, yc) = koordinat pusat lingkaran
+r = jari-jari (radius)
+x = 0, y = r
+Artinya algoritma mulai dari titik paling atas lingkaran (0, r) dalam koordinat relatif.
+p = 1 − r
+Ini adalah keputusan awal (decision parameter):
+Jika p < 0 → titik berikutnya berada di sebelah dalam lingkaran, jadi y tetap
+Jika p ≥ 0 → titik berikutnya berada di luar lingkaran, jadi y harus diturunkan
 
-🔹 Penjelasan kode :
-lebar = 10
-→ Menentukan jumlah kolom (sumbu X) pada layar, yaitu 10 piksel secara horizonta
-tinggi = 5
-→ Menentukan jumlah baris (sumbu Y) pada layar, yaitu 5 piksel secara vertikal.
-x = 3 dan y = 2
-→ Menentukan koordinat titik yang akan ditandai.
-Artinya titik "X" akan muncul pada kolom ke-3 dan baris ke-2.
 
-🔹 Program ini menggunakan konsep koordinat raster, di mana layar komputer dianggap sebagai kumpulan titik (piksel) yang tersusun secara baris dan kolom.
-Setiap titik memiliki posisi (x, y) tertentu, dan dapat diubah tampilannya sesuai kebutuhan.
+2. FUNGSI PLOT 8 TITIK SIMETRIS
+
+Mengapa 8 titik?
+Lingkaran punya 8-banyak simetri (oktan), sehingga cukup hitung 1 oktan saja, lalu cerminkan titiknya.
+Jika kita dapat 1 titik (x, y), maka:
+empat titik di atas–bawah–kiri–kanan (kuadran),
+empat titik lagi ditukar posisi x dan y.
+Inilah yang membuat algoritma Midpoint Circle sangat cepat.
+
+3. LOOP UTAMA
+Mengapa kondisi x <= y?
+Karena perhitungan dilakukan hanya dari 0° sampai 45°, yaitu 1/8 lingkaran, setelah itu semua titik tinggal dicerminkan.
+Setelah menggambar satu set simetris:
+x selalu bertambah 1 (berjalan ke kanan)
+y bisa tetap atau turun (tergantung p)
+
+4.PEMERIKSAAN PARAMETER 
+Kasus 1: p < 0
+Titik midpoint berada di dalam atau tepat pada lingkaran
+Maka y tetap
+Rumus pembaruan p:
+p baru = p lama + (2x + 1)
+Kenapa?
+Karena kita hanya bergerak ke kanan (x bertambah 1).
+
+Kasus 2: p ≥ 0
+Titik midpoint berada di luar lingkaran
+Maka y turun 1
+Rumus pembaruan:
+p baru = p lama + 2(x - y) + 1
+Ini berasal dari evaluasi fungsi lingkaran ketika titik bergerak diagonal.
 
 ----------------------------------------------------------
 
-## 4. PRAKTIKUM REPRESENTASI GAMBAR SOAL 1
+## 4.  PRAKTIKUM GAMBAR POLIGON
 
 KODE PROGRAM :
 
-      # Ukuran grid
-    lebar = 10   # sumbu x
-    tinggi = 10  # sumbu y
+    def draw_polygon(points, algorithm="dda"):
+    n = len(points)
+    for i in range(n):
+        x1, y1 = points[i]
+        x2, y2 = points[(i+1) % n]
+        if algorithm == "dda":
+            line_dda(x1, y1, x2, y2)
+        else:
+            line_bresenham(x1, y1, x2, y2)
 
-    # Titik yang akan diganti
-    x = 4
-    y = 6
-
-    # Tampilkan grid
-    for row in range(tinggi):
-        for col in range(lebar):
-            if col == x and row == y:
-                print("X", end=" ")
-            else:
-                print(".", end=" ")
-        print()
-    
-HASIL OUTPUT :
-<p align="center"><img width="300" height="300" alt="image" src="GRAFIKAKOMPUTER/PERTEMUAN3/SSTUGAS/praktikumrepresentasi_1.PNG" /></p>
-
-PENJELASAN :
-
-Pada file <b><i>"PRAKTIKUMREPRESENTASIGAMBAR/soal1.py"</i></b> menampilkan grid berukuran 10×10 piksel (10 kolom dan 10 baris) menggunakan karakter ".",
-kemudian mengganti satu piksel pada posisi (x=4, y=6) menjadi "X".
-Tujuan praktikum ini adalah untuk memahami representasi gambar berbasis raster, 
-di mana setiap titik pada layar komputer direpresentasikan sebagai piksel individual.
-
-🔹lebar = 10
-→ Menentukan jumlah kolom (sumbu X), yaitu lebar grid terdiri dari 10 piksel secara horizontal.
-tinggi = 10
-→ Menentukan jumlah baris (sumbu Y), yaitu tinggi grid terdiri dari 10 piksel secara vertikal.
-x = 4 dan y = 6
-→ Menentukan koordinat titik (kolom 4, baris 6) yang akan diganti menjadi simbol "X".
-Semua titik lain tetap ".".
+PENJELASAN : 
+draw_polygon Fungsi ini digunakan untuk menggambar sebuah poligon (segi banyak),
+points, algorithm="dda" ini adalah List berisi titik-titik poligon dan Anda dapat memilih algoritma garis: dda/bresenham
+Menentukan jumlah titik  n = len(points)
+Perulangan untuk menggambar setiap sisi poligon  for i in range(n):
+Mengambil titik awal dan titik berikutnya:
+     x1, y1 = points[i]
+        x2, y2 = points[(i+1) % n]
+Mengapa (i+1) % n?
+Agar garis terakhir menghubungkan titik terakhir kembali ke titik awal.
 
 
 ----------------------------------------------------------
-
-## 5.  PRAKTIKUM REPRESENTASI GAMBAR SOAL 2
-
-KODE PROGRAM :
- 
-     # Titik awal dan akhir
-    x1, y1 = 0, 0
-    x2, y2 = 5, 3
-
-    # Menghitung delta
-    dx = x2 - x1
-    dy = y2 - y1
-
-    # Banyak langkah (mengikuti nilai dx)
-    steps = dx
-    
-    print("Titik-titik koordinat garis dari (0,0) ke (5,3):")
-    
-    # Loop untuk menghitung titik
-    for i in range(steps + 1):
-        x = x1 + (dx / steps) * i
-        y = y1 + (dy / steps) * i
-        print(f"({round(x, 2)}, {round(y, 2)})")
-
-HASIL OUTPUT :
-    <p align="center"><img width="500" height="500" alt="image" src="GRAFIKAKOMPUTER/PERTEMUAN3/SSTUGAS/praktikumrepresentasi_2.PNG" /></p>
-    
-PENJELASAN :
-
-Pada file <b><i>"PRAKTIKUMREPRESENTASIGAMBAR/soal2.py"</i></b> untuk menggambar garis dari titik (0,0) ke titik (5,3)
-dengan cara menghitung titik-titik koordinat yang dilalui oleh garis tersebut berdasarkan rumus vektor.
-
-🔹 Menentukan dua titik:
-Titik awal di koordinat (0,0)
-Titik akhir di koordinat (5,3)
-
-🔹 Menghitung perubahan nilai (selisih):
-dx = 5 − 0 = 5
-dy = 3 − 0 = 3
-Selisih ini menunjukkan arah dan panjang garis di sumbu X dan Y.
-
-🔹 Karena garis bergerak dari 0 hingga 5 pada sumbu X,
-maka jumlah langkah dihitung berdasarkan dx = 5,
-artinya akan ada 6 titik (termasuk titik awal dan titik akhir)
-
-🔹 Loop menghitung posisi titik-titik di sepanjang garis:
-(dx / steps) dan (dy / steps) menentukan kenaikan nilai tiap langkah.
-round(x, 2) dan round(y, 2) digunakan agar hasil dibulatkan 2 desimal.
-Setiap iterasi menghasilkan koordinat baru di sepanjang garis.
-
-## 6.  PRAKTIKUM REPRESENTASI GAMBAR SOAL 3 
-
-## 🧩 Perbandingan Raster dan Vektor Berdasarkan Hasil Praktikum
-
-| Aspek | **Raster (Berbasis Piksel)** | **Vektor (Berbasis Koordinat)** |
-|--------|------------------------------|---------------------------------|
-| **Judul praktikum** | Menampilkan grid 10×10 dan mengganti piksel (4,6) menjadi “X” | Menggambar garis dari (0,0) ke (5,3) dengan menghitung titik koordinatnya |
-| **Konsep utama** | Gambar dibentuk dari **kumpulan titik/piksel** yang memiliki posisi tetap di layar | Gambar dibentuk dari **perhitungan matematis antar titik** (rumus garis atau vektor) |
-| **Cara kerja** | Program mencetak **setiap posisi (x,y)** di layar, mengganti posisi tertentu dengan “X” | Program menghitung **koordinat garis** berdasarkan rumus Δx dan Δy, lalu mencetak hasilnya |
-| **Representasi data** | Setiap piksel ditampilkan secara langsung di grid 10×10 | Hanya titik awal dan akhir yang diketahui; titik-titik di antaranya dihitung menggunakan persamaan garis |
-| **Ketergantungan resolusi** | **Sangat tergantung resolusi** (semakin besar grid, semakin detail) | **Tidak tergantung resolusi** (tetap tajam di ukuran berapa pun) |
-| **Kelebihan** | Mudah divisualisasikan, cocok untuk simulasi tampilan layar komputer | Hasil gambar presisi, efisien untuk bentuk garis, kurva, dan skala bebas |
-| **Kekurangan** | Memerlukan banyak data piksel, tidak efisien untuk gambar kompleks | Membutuhkan perhitungan matematis (lebih rumit) |
-| **Contoh hasil praktikum** | `. . . . . . . . . .`<br>`. . . . X . . . . .` | `(0,0) (1,0.6) (2,1.2) (3,1.8) (4,2.4) (5,3)` |
-| **Contoh penggunaan nyata** | Foto, tampilan layar, kamera digital (JPG, PNG, BMP) | Desain logo, CAD, peta digital, dan animasi (SVG, PDF, AI) |
-
----
-
-### 💡 Kesimpulan
-- **Raster** menggambarkan gambar berdasarkan **piksel tetap** → cocok untuk simulasi layar dan citra digital.  
-- **Vektor** menggambarkan gambar berdasarkan **rumus koordinat** → cocok untuk bentuk geometri, garis, dan desain presisi.
-
-
-
 ----------------------------------------------------------
-
+HASIL OUTPUT :
+    <p align="center"><img width="500" height="500" alt="image" src="GRAFIKAKOMPUTER/PERTEMUAN5/SS_TUGAS/capture1.PNG" /></p>
