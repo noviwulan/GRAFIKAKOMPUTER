@@ -45,7 +45,8 @@ Jalankan file tersebut melalui terminal atau IDE pilihan Anda:
    
 ----------------------------------------------------------
 
-##Kontrol Navigasi
+
+## Kontrol Navigasi
 
 Panah Atas / Bawah :Rotasi Objek pada Sumbu X
 Panah Kiri / Kanan :Rotasi Objek pada Sumbu Y
